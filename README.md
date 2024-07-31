@@ -63,9 +63,6 @@ Time spent: 2.17s.
 ------
 ```
 
-![image](https://media.oss.navercorp.com/user/40449/files/97375024-c8a0-4899-b18f-5304bb0d99f9)
-
-
 ## References
 ### GPU Time Slicing
 - https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing
