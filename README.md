@@ -18,7 +18,8 @@ MODEL_PATH=PATH_TO_MODELS make cluster
 # Enable GPU Time-Slicing for multiple replicas.
 helm install nvidia-device-plugin charts/nvidia-device-plugin -n kube-system
 # Install Ingress.
-helm install traefik charts/traefik
+kubectl create namespace ingress
+helm install traefik charts/traefik -n ingress
 
 # Install a ComfyUI service on the cluster.
 helm install comfyui charts/comfyui
