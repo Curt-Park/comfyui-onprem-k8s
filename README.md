@@ -79,3 +79,4 @@ Time spent: 2.17s.
 
 ### JupyterHub
 - https://z2jh.jupyter.org/en/stable/
+- https://z2jh.jupyter.org/en/latest/administrator/services.html

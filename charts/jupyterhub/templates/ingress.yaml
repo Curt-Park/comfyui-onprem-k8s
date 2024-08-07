@@ -32,4 +32,15 @@ spec:
   tls:
     {{- . | toYaml | nindent 4 }}
   {{- end }}
+{{- if eq .Values.ingress.ingressClassName "traefik" }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "jupyterhub.ingress.fullname" . }}-stripprefix
+spec:
+  stripPrefix:
+    prefixes:
+      - "hub"
+{{- end}}
 {{- end }}

@@ -23,7 +23,7 @@ imagePullSecret:
   email:
 # imagePullSecrets is configuration to reference the k8s Secret resources the
 # Helm chart's pods can get credentials from to pull their images.
-imagePullSecrets: []
+imagePullSecrets: ["ghcr-reg"]
 
 # hub relates to the hub pod, responsible for running JupyterHub, its configured
 # Authenticator class KubeSpawner, and its configured Proxy class
@@ -33,6 +33,11 @@ imagePullSecrets: []
 hub:
   revisionHistoryLimit:
   config:
+    Authenticator:
+      admin_users:
+      - admin
+    DummyAuthenticator:
+      password: admin123!@#
     JupyterHub:
       admin_access: true
       authenticator_class: dummy
@@ -182,7 +187,7 @@ proxy:
     rollingUpdate:
   # service relates to the proxy-public service
   service:
-    type: LoadBalancer
+    type: ClusterIP
     labels: {}
     annotations: {}
     nodePorts:
@@ -642,9 +647,9 @@ prePuller:
       pullSecrets: []
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
-  ingressClassName:
+  ingressClassName: "traefik"
   hosts: []
   pathSuffix:
   pathType: Prefix
