@@ -123,7 +123,7 @@ hub:
   namedServerLimitPerUser:
   authenticatePrometheus:
   redirectToServer:
-  shutdownOnLogout:
+  shutdownOnLogout: true
   templatePaths: []
   templateVars: {}
   livenessProbe:
