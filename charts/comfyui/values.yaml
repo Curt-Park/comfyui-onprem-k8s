@@ -11,7 +11,7 @@ image:
   tag: "comfyui-82cae45"
 
 imagePullSecrets:
-  - name: snow-reg
+  - name: ghcr-reg
 nameOverride: ""
 fullnameOverride: ""
 

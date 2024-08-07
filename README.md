@@ -4,6 +4,7 @@
 - Install [Docker](https://docs.docker.com/engine/install/)
 - Install [Kubectl](https://kubernetes.io/docs/tasks/tools/)
 - Install [Minikube](https://minikube.sigs.k8s.io/docs/start)
+- Login [GHCR](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic)
 
 ## Build ComfyUI (Optional)
 ```bash
@@ -75,3 +76,6 @@ Time spent: 2.17s.
 ### Ingress
 - https://doc.traefik.io/traefik/routing/services/?ref=traefik.io#sticky-sessions
 - https://doc.traefik.io/traefik/routing/providers/kubernetes-ingress/
+
+### JupyterHub
+- https://z2jh.jupyter.org/en/stable/
