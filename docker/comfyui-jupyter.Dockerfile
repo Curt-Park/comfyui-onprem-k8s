@@ -18,16 +18,12 @@ RUN apt-get update \
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-WORKDIR /home/jovyan
-
 # link comfyui user interactive directories to home
 RUN rm -rf input output temp
-RUN mkdir /home/jovyan/ComfyUI && cd /home/jovyan/ComfyUI && mkdir input output temp 
+RUN mkdir -p /home/jovyan/ComfyUI && cd /home/jovyan/ComfyUI && mkdir input output temp
 RUN ln -s /home/jovyan/ComfyUI/input /home/workspace/ComfyUI/input
 RUN ln -s /home/jovyan/ComfyUI/output /home/workspace/ComfyUI/output
 RUN ln -s /home/jovyan/ComfyUI/temp /home/workspace/ComfyUI/temp
-
-RUN jupyter lab --generate-config
 
 EXPOSE 8888
 ENTRYPOINT ["tini", "--"]

@@ -422,16 +422,10 @@ singleuser:
   profileList:
   - display_name: "CPU Server"
     description: "Spawns a notebook server without access to a GPU"
-    default: True
   - display_name: "GPU Server"
     description: "Spawns a notebook server with access to a GPU"
+    default: True
     kubespawner_override:
-      extra_resource_limits:
-        nvidia.com/gpu: "1"
-  - display_name: "ComfyUI Server"
-    description: "Spawns a ComfyUI server with access to a GPU"
-    kubespawner_override:
-      image: "ghcr.io/curt-park/comfyui-onprem-k8s:comfyui-jupyter-8115d8c"
       extra_resource_limits:
         nvidia.com/gpu: "1"
 
