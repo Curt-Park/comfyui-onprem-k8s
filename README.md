@@ -25,13 +25,6 @@ This project aims to provide two different types of ComfyUI services on Kubernet
 - Install [Minikube](https://minikube.sigs.k8s.io/docs/start)
 - Login [GHCR](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic)
 
-## Build ComfyUI (Optional)
-```bash
-make docker-build
-make docker-push
-make docker-run  # for testing
-```
-
 ## Cluster Setup
 ```bash
 MODEL_PATH=PATH_TO_MODELS make cluster
