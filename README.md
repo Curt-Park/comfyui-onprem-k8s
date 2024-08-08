@@ -53,7 +53,7 @@ helm install comfyui charts/comfyui
 ```
 
 - Create a connection for testing in minikube: `make tunnel`
-- open http://localhost/comfyui
+- open http://localhost/comfyui/
 - `cd test`
 - `python main.py -s http://host-address/comfyui`
 
@@ -86,7 +86,7 @@ make docker-run-jupyter  # for testing
 helm install jupyterhub charts/jupyterhub
 ```
 
-- `python main.py -s http://host-address/hub`
+- `python main.py -s http://host-address/hub/`
 - login with `id: admin / pw: admin123!@#`
 
 <img width="1503" src="https://github.com/user-attachments/assets/251e1c6c-6e46-49c6-9b0a-5f6c58b7d8ef">
