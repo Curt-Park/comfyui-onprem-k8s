@@ -16,8 +16,8 @@ RUN apt-get install -y python3.10-dev
 # torch and xformers
 RUN pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --extra-index-url https://download.pytorch.org/whl/cu121
 
-ARG COMFYUI_VERSION=82cae45
-ARG COMFYUI_MANAGER_VERSION=694a2fc
+ARG COMFYUI_VERSION
+ARG COMFYUI_MANAGER_VERSION
 
 # clone ComfyUI
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git \
@@ -32,6 +32,7 @@ RUN cd ComfyUI/custom_nodes \
 RUN pip install -r ComfyUI/requirements.txt
 
 # RUN
+ENV PATH="$PATH:/home/workspace/ComfyUI"
 WORKDIR /home/workspace/ComfyUI
 CMD ["/bin/bash", "-c", "python3.10 main.py --listen 0.0.0.0 --port 50000"]
 

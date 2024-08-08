@@ -4,6 +4,7 @@
 - Install [Docker](https://docs.docker.com/engine/install/)
 - Install [Kubectl](https://kubernetes.io/docs/tasks/tools/)
 - Install [Minikube](https://minikube.sigs.k8s.io/docs/start)
+- Login [GHCR](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic)
 
 ## Build ComfyUI (Optional)
 ```bash
@@ -18,36 +19,29 @@ MODEL_PATH=PATH_TO_MODELS make cluster
 # Enable GPU Time-Slicing for multiple replicas.
 helm install nvidia-device-plugin charts/nvidia-device-plugin -n kube-system
 # Install Ingress.
-helm install traefik charts/traefik
+kubectl create namespace ingress
+helm install traefik charts/traefik -n ingress
 
-# Install a ComfyUI service on the cluster.
+# Volumes.
+kubectl apply -f volumes/minikube.yaml  # for minikube env.
+```
+
+## ComfyUI Service
+Build ComfyUI (Optional)
+```bash
+make docker-build
+make docker-push
+make docker-run  # for testing
+```
+
+```bash
 helm install comfyui charts/comfyui
-# Check the ComfyUI works.
-kubectl get pods
 ```
 
-## ComfyUI Test
-```bash
-make tunnel
-```
-
-### Browser
-open http://localhost/comfyui
-
-### Python Script
-Under `test`,
-
-Prerequisites:
-```bash
-conda create -n comfyui-test python=3.10 -y
-conda activate comfyui-test
-pip install -r requirements.txt
-```
-
-Run:
-```bash
-python main.py -s http://host-address/comfyui
-```
+- Create a connection for testing in minikube: `make tunnel`
+- open http://localhost/comfyui
+- `cd test`
+- `python main.py -s http://host-address/comfyui`
 
 Result:
 ```bash
@@ -63,8 +57,28 @@ Time spent: 2.17s.
 ------
 ```
 
+NOTE:
+- Set the proper host volume path in `charts/comfyui/values.yaml`
+
+## ComfyUI + JupyterHub
+Build ComfyUI (Optional)
+```bash
+make docker-build-jupyter
+make docker-push-jupyter
+make docker-run-jupyter  # for testing
+```
+
+```bash
+helm install jupyterhub charts/jupyterhub
+```
+
+- `python main.py -s http://host-address/hub`
+- login with `id: admin / pw: admin123!@#`
+
+<img width="1503" src="https://github.com/user-attachments/assets/251e1c6c-6e46-49c6-9b0a-5f6c58b7d8ef">
+
 ## References
-### GPU Time Slicing
+### GPU Sharing on K8S
 - https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing
 - https://nyyang.tistory.com/198
 
@@ -74,3 +88,11 @@ Time spent: 2.17s.
 ### Ingress
 - https://doc.traefik.io/traefik/routing/services/?ref=traefik.io#sticky-sessions
 - https://doc.traefik.io/traefik/routing/providers/kubernetes-ingress/
+
+### JupyterHub
+- https://z2jh.jupyter.org/en/stable/
+- https://z2jh.jupyter.org/en/latest/administrator/services.html
+
+### Jupyter Server Proxy
+- https://jupyter-server-proxy.readthedocs.io/en/latest/server-process.html
+- https://github.com/jupyterhub/jupyter-rsession-proxy/

@@ -11,7 +11,7 @@ image:
   tag: "comfyui-82cae45"
 
 imagePullSecrets:
-  - name: snow-reg
+  - name: ghcr-reg
 nameOverride: ""
 fullnameOverride: ""
 
@@ -25,12 +25,6 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
-
-volume:
-  model:
-    hostPath: /minikube-host/models
-  tmp:
-    hostPath: /var/tmp/comfyui
 
 podAnnotations: {}
 podLabels: {}
