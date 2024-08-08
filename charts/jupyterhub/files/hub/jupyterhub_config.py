@@ -415,7 +415,9 @@ for key, role in get_config("hub.loadRoles", {}).items():
 _unspecified = object()
 specified_cmd = get_config("singleuser.cmd", _unspecified)
 if specified_cmd is not _unspecified:
-    c.Spawner.cmd = specified_cmd
+    split_cmd = specified_cmd.split()
+    c.Spawner.cmd = split_cmd[0]
+    c.Spawner.args = list(split_cmd[1:])
 
 set_config_if_not_none(c.Spawner, "default_url", "singleuser.defaultUrl")
 

@@ -23,7 +23,7 @@ imagePullSecret:
   email:
 # imagePullSecrets is configuration to reference the k8s Secret resources the
 # Helm chart's pods can get credentials from to pull their images.
-imagePullSecrets: ["ghcr-reg"]
+imagePullSecrets: []
 
 # hub relates to the hub pod, responsible for running JupyterHub, its configured
 # Authenticator class KubeSpawner, and its configured Proxy class
@@ -382,8 +382,8 @@ singleuser:
   initContainers: []
   extraContainers: []
   allowPrivilegeEscalation: false
-  uid: 1000
-  fsGid: 100
+  uid: 0
+  fsGid: 0
   serviceAccountName:
   storage:
     type: dynamic
@@ -401,10 +401,10 @@ singleuser:
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
   image:
-    name: quay.io/jupyterhub/k8s-singleuser-sample
-    tag: "3.3.8"
+    name: ghcr.io/curt-park/comfyui-onprem-k8s
+    tag: "comfyui-jupyter-8115d8c"
     pullPolicy:
-    pullSecrets: []
+    pullSecrets: ["ghcr-reg"]
   startTimeout: 300
   cpu:
     limit:
@@ -415,7 +415,7 @@ singleuser:
   extraResource:
     limits: {}
     guarantees: {}
-  cmd: jupyterhub-singleuser
+  cmd: "jupyterhub-singleuser --ServerApp.allow_root=True"
   defaultUrl:
   extraPodConfig: {}
   # https://jupyterhub-kubespawner.readthedocs.io/en/latest/spawner.html#kubespawner.KubeSpawner.profile_list

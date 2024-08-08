@@ -18,13 +18,6 @@ RUN apt-get update \
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-# link comfyui user interactive directories to home
-RUN rm -rf input output temp
-RUN mkdir -p /home/jovyan/ComfyUI && cd /home/jovyan/ComfyUI && mkdir input output temp
-RUN ln -s /home/jovyan/ComfyUI/input /home/workspace/ComfyUI/input
-RUN ln -s /home/jovyan/ComfyUI/output /home/workspace/ComfyUI/output
-RUN ln -s /home/jovyan/ComfyUI/temp /home/workspace/ComfyUI/temp
-
 EXPOSE 8888
 ENTRYPOINT ["tini", "--"]
 CMD ["jupyter", "lab", "--ip", "0.0.0.0", "--port", "8888", "--allow-root"]
