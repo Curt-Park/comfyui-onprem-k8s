@@ -19,7 +19,7 @@ RUN apt-get update \
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-WORKDIR /home/
+WORKDIR /home/user
 EXPOSE 8888
 ENTRYPOINT ["tini", "--"]
 CMD ["jupyter", "lab", "--ip", "0.0.0.0", "--port", "8888", "--allow-root"]

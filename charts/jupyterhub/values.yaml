@@ -377,8 +377,23 @@ singleuser:
   extraLabels:
     hub.jupyter.org/network-access-hub: "true"
   extraFiles: {}
-  extraEnv: {}
-  lifecycleHooks: {}
+  extraEnv:
+    COMFYUI_PATH: /home/workspace/ComfyUI
+    COMFYUI_USERDATA_PATH: /home/user/ComfyUI
+  lifecycleHooks:
+    postStart:
+      exec:
+        command:
+          - "sh"
+          - "-c"
+          - |
+            # link comfyui directories with user's storage.
+            for DIR in "input" "output" "temp";
+            do
+              rm -rf $COMFYUI_PATH/$DIR;
+              mkdir -p $COMFYUI_USERDATA_PATH/$DIR;
+              ln -s $COMFYUI_USERDATA_PATH/$DIR $COMFYUI_PATH/$DIR;
+            done
   initContainers: []
   extraContainers: []
   allowPrivilegeEscalation: false
@@ -394,7 +409,7 @@ singleuser:
       pvcName:
       subPath: "{username}"
     capacity: 10Gi
-    homeMountPath: /home/myFile
+    homeMountPath: /home/user
     dynamic:
       storageClass:
       pvcNameTemplate: claim-{username}{servername}
