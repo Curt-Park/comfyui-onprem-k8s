@@ -46,8 +46,8 @@ service:
   annotations:
     traefik.ingress.kubernetes.io/affinity: "true"  # Enable backend sticky sessions.
     traefik.ingress.kubernetes.io/service.sticky.cookie: "true"  # Cookie-based session stickiness.
-    # NOTE: maxage 설정시 제한시간 이후 브라우저에서 작업하던 유저의 세션이 끊어질 수 있음.
-    #       세션이 끊어지면 ComfyUI와 상호작용 하기위해 유저는 브라우저를 새로고침 해야 함.
+    # NOTE: When setting maxage, the user's session in the browser may be disconnected after the time limit.
+    #       If the session is disconnected, the user needs to refresh the browser to interact with ComfyUI again.
     traefik.ingress.kubernetes.io/service.sticky.cookie.maxage: "28800"  # Sticky session sec (8 hours)
 
 ingress:
