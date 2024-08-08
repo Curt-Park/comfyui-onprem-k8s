@@ -8,16 +8,16 @@ This project aims to provide two different types of ComfyUI services on Kubernet
 - [x] [Common] Minikube Cluster for development
 - [x] [Common] GPU Sharing (Time Slicing)
 - [x] [Common] Ingress Route
+- [ ] [Common] Monitoring (Dashboard for Metric + Logging)
 - [x] [ComfyUI API Service] Cookie-based Session Stickiness with Timeout
 - [x] [ComfyUI API Service] Python Test Script for Image Generation
 - [ ] [ComfyUI API Service] Horizontal Pod Autoscaling
 - [x] [ComfyUI Interactive Service] Authentication and Authorization
 - [x] [ComfyUI Interactive Service] Custom Docker Image for JupyterHub SingleUser (+ComfyUI)
 - [x] [ComfyUI Interactive Service] ComfyUI Extension for Jupyter Server Proxy 
-- [x] [ComfyUI Interactive Service] Profiles for GPU Env / CPU only Env.
-- [x] [ComfyUI Interactive Service] Persistent Volume for ComfyUI User Data.
-- [x] [ComfyUI Interactive Service] Evicting inactive users.
-- [ ] [Common] Monitoring (Dashboard for Metric + Logging)
+- [x] [ComfyUI Interactive Service] Profiles for GPU Env / CPU only Env
+- [x] [ComfyUI Interactive Service] Persistent Volume for ComfyUI User Data
+- [x] [ComfyUI Interactive Service] Evicting inactive users
 
 ## Prerequisites
 - Install [Docker](https://docs.docker.com/engine/install/)
