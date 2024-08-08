@@ -1,3 +1,4 @@
+# https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/main/images/singleuser-sample/Dockerfile
 ARG BASE_IMAGE
 FROM $BASE_IMAGE
 
@@ -17,6 +18,13 @@ RUN apt-get update \
 # install python packages.
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+
+RUN rm -rf input output temp
+RUN mkdir -p /home/jovyan/ComfyUI && cd /home/jovyan/ComfyUI && mkdir input output temp
+RUN ln -s /home/jovyan/ComfyUI/input /home/workspace/ComfyUI/input
+RUN ln -s /home/jovyan/ComfyUI/output /home/workspace/ComfyUI/output
+RUN ln -s /home/jovyan/ComfyUI/temp /home/workspace/ComfyUI/temp
+WORKDIR /home/jovyan
 
 EXPOSE 8888
 ENTRYPOINT ["tini", "--"]
