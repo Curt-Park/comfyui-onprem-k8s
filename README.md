@@ -5,9 +5,9 @@ This project aims to provide two different types of ComfyUI services on Kubernet
 2. Interactive Service for Designers
 
 ## Features
-- [x] Minikube Cluster for development
-- [x] GPU Sharing (Time Slicing)
-- [x] Ingress Route
+- [x] [Common] Minikube Cluster for development
+- [x] [Common] GPU Sharing (Time Slicing)
+- [x] [Common] Ingress Route
 - [x] [ComfyUI API Service] Cookie-based Session Stickiness with Timeout
 - [x] [ComfyUI API Service] Python Test Script for Image Generation
 - [ ] [ComfyUI API Service] Horizontal Pod Autoscaling
@@ -17,7 +17,7 @@ This project aims to provide two different types of ComfyUI services on Kubernet
 - [x] [ComfyUI Interactive Service] Profiles for GPU Env / CPU only Env.
 - [x] [ComfyUI Interactive Service] Persistent Volume for ComfyUI User Data.
 - [x] [ComfyUI Interactive Service] Evicting inactive users.
-- [ ] Monitoring (Dashboard for Metric + Logging)
+- [ ] [Common] Monitoring (Dashboard for Metric + Logging)
 
 ## Prerequisites
 - Install [Docker](https://docs.docker.com/engine/install/)
