@@ -21,9 +21,19 @@ helm install nvidia-device-plugin charts/nvidia-device-plugin -n kube-system
 # Install Ingress.
 kubectl create namespace ingress
 helm install traefik charts/traefik -n ingress
+
+# Volumes.
+kubectl apply -f volumes/minikube.yaml  # for minikube env.
 ```
 
 ## ComfyUI Service
+Build ComfyUI (Optional)
+```bash
+make docker-build
+make docker-push
+make docker-run  # for testing
+```
+
 ```bash
 helm install comfyui charts/comfyui
 ```
@@ -51,6 +61,13 @@ NOTE:
 - Set the proper host volume path in `charts/comfyui/values.yaml`
 
 ## ComfyUI + JupyterHub
+Build ComfyUI (Optional)
+```bash
+make docker-build-jupyter
+make docker-push-jupyter
+make docker-run-jupyter  # for testing
+```
+
 ```bash
 helm install jupyterhub charts/jupyterhub
 ```

@@ -391,6 +391,7 @@ singleuser:
             if [ -d "$COMFYUI_PATH"  ]; then
               for DIR in "input" "output" "temp";
               do
+                # user inputs / outputs.
                 rm -rf $COMFYUI_PATH/$DIR;
                 mkdir -p $COMFYUI_USERDATA_PATH/$DIR;
                 ln -s $COMFYUI_USERDATA_PATH/$DIR $COMFYUI_PATH/$DIR;
@@ -405,8 +406,13 @@ singleuser:
   storage:
     type: dynamic
     extraLabels: {}
-    extraVolumes: []
-    extraVolumeMounts: []
+    extraVolumes:
+    - name: comfyui-model
+      persistentVolumeClaim:
+        claimName: comfyui-model-pvc
+    extraVolumeMounts:
+    - name: comfyui-model
+      mountPath: /home/workspace/ComfyUI/models
     static:
       pvcName:
       subPath: "{username}"

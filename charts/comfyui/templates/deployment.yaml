@@ -62,11 +62,11 @@ spec:
       volumes:
         - name: model-storage
           persistentVolumeClaim:
-            claimName: {{ include "comfyui.fullname" . }}-model-{{ .Release.Namespace }}-pvc
+            claimName: comfyui-model-pvc
             readOnly: true
         - name: tmp
           persistentVolumeClaim:
-            claimName: {{ include "comfyui.fullname" . }}-tmp-{{ .Release.Namespace }}-pvc
+            claimName: comfyui-tmp-pvc
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
