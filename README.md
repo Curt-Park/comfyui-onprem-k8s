@@ -6,8 +6,8 @@ This project aims to provide two different types of ComfyUI services on Kubernet
 
 ## Features
 - [x] Minikube Cluster for development
-- [x] GPU Sharing by Time Slicing
-- [x] Ingress Route by [Traefik](https://doc.traefik.io/traefik/)
+- [x] GPU Sharing (Time Slicing)
+- [x] Ingress Route
 - [x] [ComfyUI API Service] Cookie-based Session Stickiness with Timeout
 - [x] [ComfyUI API Service] Python Test Script for Image Generation
 - [ ] [ComfyUI API Service] Horizontal Pod Autoscaling
