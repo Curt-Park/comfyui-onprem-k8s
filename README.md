@@ -1,5 +1,18 @@
 # ComfyUI on an On-Premise Kubernetes Cluster
 
+## Features
+- [x] Minikube Cluster for development
+- [x] GPU Sharing by Time Slicing
+- [x] Ingress Route by [Traefik](https://doc.traefik.io/traefik/)
+- [x] [ComfyUI K8S Service] Cookie-based Session Stickiness with Timeout
+- [x] [ComfyUI K8S Service] Python Test Script for Image Generation
+- [x] [ComfyUI + JupyterHub] Authentication and Authorization
+- [x] [ComfyUI + JupyterHub] Custom Docker Image for JupyterHub SingleUser (+ComfyUI)
+- [x] [ComfyUI + JupyterHub] ComfyUI Extension for Jupyter Server Proxy 
+- [x] [ComfyUI + JupyterHub] Profiles for GPU Env / CPU only Env.
+- [x] [ComfyUI + JupyterHub] Persistent Volume for ComfyUI User Data.
+- [x] [ComfyUI + JupyterHub] Evicting inactive users.
+
 ## Prerequisites
 - Install [Docker](https://docs.docker.com/engine/install/)
 - Install [Kubectl](https://kubernetes.io/docs/tasks/tools/)
@@ -27,6 +40,8 @@ kubectl apply -f volumes/minikube.yaml  # for minikube env.
 ```
 
 ## ComfyUI Service
+This is an on-premise Kubernetes cluster version inspired by [comfyui on EKS](https://github.com/aws-samples/comfyui-on-eks).
+
 Build ComfyUI (Optional)
 ```bash
 make docker-build
