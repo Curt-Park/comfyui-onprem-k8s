@@ -19,6 +19,10 @@ RUN apt-get update \
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
+# jupyter extensions.
+COPY extensions /home/extensions
+RUN pip install /home/extensions/jupyter_comfyui_proxy/.
+
 WORKDIR /home/user
 EXPOSE 8888
 ENTRYPOINT ["tini", "--"]

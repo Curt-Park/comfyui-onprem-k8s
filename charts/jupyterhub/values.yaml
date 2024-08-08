@@ -388,12 +388,14 @@ singleuser:
           - "-c"
           - |
             # link comfyui directories with user's storage.
-            for DIR in "input" "output" "temp";
-            do
-              rm -rf $COMFYUI_PATH/$DIR;
-              mkdir -p $COMFYUI_USERDATA_PATH/$DIR;
-              ln -s $COMFYUI_USERDATA_PATH/$DIR $COMFYUI_PATH/$DIR;
-            done
+            if [ -d "$COMFYUI_PATH"  ]; then
+              for DIR in "input" "output" "temp";
+              do
+                rm -rf $COMFYUI_PATH/$DIR;
+                mkdir -p $COMFYUI_USERDATA_PATH/$DIR;
+                ln -s $COMFYUI_USERDATA_PATH/$DIR $COMFYUI_PATH/$DIR;
+              done;
+            fi
   initContainers: []
   extraContainers: []
   allowPrivilegeEscalation: false
@@ -435,14 +437,14 @@ singleuser:
   extraPodConfig: {}
   # https://jupyterhub-kubespawner.readthedocs.io/en/latest/spawner.html#kubespawner.KubeSpawner.profile_list
   profileList:
-  - display_name: "CPU Server"
-    description: "Spawns a notebook server without access to a GPU"
   - display_name: "GPU Server"
     description: "Spawns a notebook server with access to a GPU"
-    default: True
+    default: true
     kubespawner_override:
       extra_resource_limits:
         nvidia.com/gpu: "1"
+  - display_name: "CPU Server"
+    description: "Spawns a notebook server without access to a GPU"
 
 # scheduling relates to the user-scheduler pods and user-placeholder pods.
 scheduling:

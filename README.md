@@ -21,35 +21,17 @@ helm install nvidia-device-plugin charts/nvidia-device-plugin -n kube-system
 # Install Ingress.
 kubectl create namespace ingress
 helm install traefik charts/traefik -n ingress
+```
 
-# Install a ComfyUI service on the cluster.
+## ComfyUI Service
+```bash
 helm install comfyui charts/comfyui
-# Check the ComfyUI works.
-kubectl get pods
 ```
 
-## ComfyUI Test
-```bash
-make tunnel
-```
-
-### Browser
-open http://localhost/comfyui
-
-### Python Script
-Under `test`,
-
-Prerequisites:
-```bash
-conda create -n comfyui-test python=3.10 -y
-conda activate comfyui-test
-pip install -r requirements.txt
-```
-
-Run:
-```bash
-python main.py -s http://host-address/comfyui
-```
+- Create a connection for testing in minikube: `make tunnel`
+- open http://localhost/comfyui
+- `cd test`
+- `python main.py -s http://host-address/comfyui`
 
 Result:
 ```bash
@@ -65,8 +47,19 @@ Time spent: 2.17s.
 ------
 ```
 
+NOTE:
+- Set the proper host volume path in `charts/comfyui/values.yaml`
+
+## ComfyUI + JupyterHub
+```bash
+helm install jupyterhub charts/jupyterhub
+```
+
+- `python main.py -s http://host-address/hub`
+- login with `id: admin / pw: admin123!@#`
+
 ## References
-### GPU Time Slicing
+### GPU Sharing on K8S
 - https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#with-cuda-time-slicing
 - https://nyyang.tistory.com/198
 
@@ -80,3 +73,7 @@ Time spent: 2.17s.
 ### JupyterHub
 - https://z2jh.jupyter.org/en/stable/
 - https://z2jh.jupyter.org/en/latest/administrator/services.html
+
+### Jupyter Server Proxy
+- https://jupyter-server-proxy.readthedocs.io/en/latest/server-process.html
+- https://github.com/jupyterhub/jupyter-rsession-proxy/
