@@ -394,7 +394,7 @@ singleuser:
       pvcName:
       subPath: "{username}"
     capacity: 10Gi
-    homeMountPath: /home/jovyan
+    homeMountPath: /home/myFile
     dynamic:
       storageClass:
       pvcNameTemplate: claim-{username}{servername}
