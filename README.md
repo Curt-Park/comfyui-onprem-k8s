@@ -1,17 +1,23 @@
 # ComfyUI on an On-Premise Kubernetes Cluster
 
+This project aims to provide two different types of ComfyUI services on Kubernetes:
+1. API Service for Production
+2. Interactive Service for Designers
+
 ## Features
 - [x] Minikube Cluster for development
 - [x] GPU Sharing by Time Slicing
 - [x] Ingress Route by [Traefik](https://doc.traefik.io/traefik/)
-- [x] [ComfyUI K8S Service] Cookie-based Session Stickiness with Timeout
-- [x] [ComfyUI K8S Service] Python Test Script for Image Generation
-- [x] [ComfyUI + JupyterHub] Authentication and Authorization
-- [x] [ComfyUI + JupyterHub] Custom Docker Image for JupyterHub SingleUser (+ComfyUI)
-- [x] [ComfyUI + JupyterHub] ComfyUI Extension for Jupyter Server Proxy 
-- [x] [ComfyUI + JupyterHub] Profiles for GPU Env / CPU only Env.
-- [x] [ComfyUI + JupyterHub] Persistent Volume for ComfyUI User Data.
-- [x] [ComfyUI + JupyterHub] Evicting inactive users.
+- [x] [ComfyUI API Service] Cookie-based Session Stickiness with Timeout
+- [x] [ComfyUI API Service] Python Test Script for Image Generation
+- [ ] [ComfyUI API Service] Horizontal Pod Autoscaling
+- [x] [ComfyUI Interactive Service] Authentication and Authorization
+- [x] [ComfyUI Interactive Service] Custom Docker Image for JupyterHub SingleUser (+ComfyUI)
+- [x] [ComfyUI Interactive Service] ComfyUI Extension for Jupyter Server Proxy 
+- [x] [ComfyUI Interactive Service] Profiles for GPU Env / CPU only Env.
+- [x] [ComfyUI Interactive Service] Persistent Volume for ComfyUI User Data.
+- [x] [ComfyUI Interactive Service] Evicting inactive users.
+- [ ] Monitoring (Dashboard for Metric + Logging)
 
 ## Prerequisites
 - Install [Docker](https://docs.docker.com/engine/install/)
@@ -39,7 +45,7 @@ helm install traefik charts/traefik -n ingress
 kubectl apply -f volumes/minikube.yaml  # for minikube env.
 ```
 
-## ComfyUI Service
+## ComfyUI API Service
 This is an on-premise Kubernetes cluster version inspired by [comfyui on EKS](https://github.com/aws-samples/comfyui-on-eks).
 
 Build ComfyUI (Optional)
@@ -75,7 +81,7 @@ Time spent: 2.17s.
 NOTE:
 - Set the proper host volume path in `charts/comfyui/values.yaml`
 
-## ComfyUI + JupyterHub
+## ComfyUI Interactive Service (w/ JupyterHub)
 Build ComfyUI (Optional)
 ```bash
 make docker-build-jupyter
