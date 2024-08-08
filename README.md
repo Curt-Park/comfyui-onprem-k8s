@@ -71,9 +71,6 @@ Time spent: 2.17s.
 ------
 ```
 
-NOTE:
-- Set the proper host volume path in `charts/comfyui/values.yaml`
-
 ## ComfyUI Interactive Service (w/ JupyterHub)
 Build ComfyUI (Optional)
 ```bash
