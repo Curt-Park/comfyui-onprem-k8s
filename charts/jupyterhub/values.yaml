@@ -404,7 +404,7 @@ singleuser:
     name: quay.io/jupyterhub/k8s-singleuser-sample
     tag: "3.3.8"
     pullPolicy:
-    pullSecrets: []
+    pullSecrets: ["ghcr-reg"]
   startTimeout: 300
   cpu:
     limit:
@@ -418,7 +418,16 @@ singleuser:
   cmd: jupyterhub-singleuser
   defaultUrl:
   extraPodConfig: {}
-  profileList: []
+  # https://jupyterhub-kubespawner.readthedocs.io/en/latest/spawner.html#kubespawner.KubeSpawner.profile_list
+  profileList:
+  - display_name: "CPU Server"
+    description: "Spawns a notebook server without access to a GPU"
+    default: True
+  - display_name: "GPU Server"
+    description: "Spawns a notebook server with access to a GPU"
+    kubespawner_override:
+      extra_resource_limits:
+        nvidia.com/gpu: "1"
 
 # scheduling relates to the user-scheduler pods and user-placeholder pods.
 scheduling:
