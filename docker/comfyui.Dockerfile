@@ -32,7 +32,8 @@ RUN cd ComfyUI/custom_nodes \
 RUN pip install -r ComfyUI/requirements.txt
 
 # RUN
-ENV PATH="$PATH:/home/workspace/ComfyUI"
-WORKDIR /home/workspace/ComfyUI
-CMD ["/bin/bash", "-c", "python3.10 main.py --listen 0.0.0.0 --port 50000"]
-
+ENV PYTHON=python3.10
+ENV COMFYUI_PATH=/home/workspace/ComfyUI
+ENV PATH="$PATH:$COMFYUI_PATH"
+WORKDIR $COMFYUI_PATH
+CMD ["/bin/bash", "-c", "$PYTHON main.py --listen 0.0.0.0 --port 50000"]

@@ -11,10 +11,6 @@ cluster:
 		--gpus all \
 		--mount \
 		--mount-string $(MODEL_PATH):/minikube-host/models
-	# create a secret to pull docker images.
-	minikube kubectl -- create secret generic ghcr-reg \
-		--from-file=.dockerconfigjson=$(HOME)/.docker/config.json \
-		--type=kubernetes.io/dockerconfigjson
 	# we use custom nvidia-device-plugin helm chart to enable GPU sharing.
 	minikube addons disable nvidia-device-plugin
 
