@@ -12,6 +12,7 @@ This project aims to provide two different types of ComfyUI services on Kubernet
 - [x] [ComfyUI API Service] Cookie-based Session Stickiness with Timeout
 - [x] [ComfyUI API Service] Python Test Script for Image Generation
 - [ ] [ComfyUI API Service] Horizontal Pod Autoscaling
+- [ ] [ComfyUI API Service] Efficient Routing (Max Use of ComfyUI Cache)
 - [x] [ComfyUI Interactive Service] Authentication and Authorization
 - [x] [ComfyUI Interactive Service] Custom Docker Image for JupyterHub SingleUser (+ComfyUI)
 - [x] [ComfyUI Interactive Service] ComfyUI Extension for Jupyter Server Proxy 
