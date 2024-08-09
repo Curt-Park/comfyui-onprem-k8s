@@ -16,7 +16,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # install python packages.
-COPY requirements.txt requirements.txt
+COPY docker/requirements-jupyter.txt requirements.txt
 RUN pip install -r requirements.txt
 
 # jupyter extensions.

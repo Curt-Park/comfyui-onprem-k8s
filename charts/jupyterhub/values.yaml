@@ -377,9 +377,7 @@ singleuser:
   extraLabels:
     hub.jupyter.org/network-access-hub: "true"
   extraFiles: {}
-  extraEnv:
-    COMFYUI_PATH: /home/workspace/ComfyUI
-    COMFYUI_USERDATA_PATH: /home/user/ComfyUI
+  extraEnv: {}
   lifecycleHooks:
     postStart:
       exec:
@@ -389,6 +387,7 @@ singleuser:
           - |
             # link comfyui directories with user's storage.
             if [ -d "$COMFYUI_PATH"  ]; then
+              COMFYUI_USERDATA_PATH=/home/user/ComfyUI;
               for DIR in "input" "output" "temp";
               do
                 # user inputs / outputs.
@@ -427,7 +426,7 @@ singleuser:
     name: ghcr.io/curt-park/comfyui-onprem-k8s
     tag: "comfyui-jupyter-8115d8c"
     pullPolicy:
-    pullSecrets: ["ghcr-reg"]
+    pullSecrets: []
   startTimeout: 300
   cpu:
     limit:

@@ -1,4 +1,5 @@
 import os
+import logging
 
 
 def setup_comfyui_server():
@@ -11,12 +12,16 @@ def setup_comfyui_server():
         )
 
     def _get_cmd(port: int) -> list[str]:
-        # required:
-        #   - ComfyUI repo in "/home/workspace/ComfyUI"
-        #   - ENV PATH="$PATH:/home/workspace/ComfyUI" in Dockerfile
+        # required (in Dockerfile):
+        #   - $PYTHON
+        #   - $COMFYUI_PATH
+        #   - PATH=$PATH:$COMFYUI_PATH
+        PYTHON = os.getenv("PYTHON", "python3.10")
+        COMFYUI_PATH = os.getenv("COMFYUI_PATH", os.path.join("home", "workspace", "ComfyUI"))
+        logging.info("PYTHON: %s, COMFYUI_PATH: %s", PYTHON, COMFYUI_PATH)
         return [
-            "python3.10",
-            "/home/workspace/ComfyUI/main.py",
+            PYTHON,
+            os.path.join(COMFYUI_PATH, "main.py"),
             "--listen=0.0.0.0",
             f"--port={port}",
         ]
