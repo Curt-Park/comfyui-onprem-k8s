@@ -24,6 +24,7 @@ This project aims to provide two different types of ComfyUI services on Kubernet
 - Install [Docker](https://docs.docker.com/engine/install/)
 - Install [Kubectl](https://kubernetes.io/docs/tasks/tools/)
 - Install [Minikube](https://minikube.sigs.k8s.io/docs/start)
+- Install [HELM](https://helm.sh/docs/intro/install/)
 
 ## Cluster Setup
 ```bash
