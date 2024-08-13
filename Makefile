@@ -8,6 +8,7 @@ cluster:
 	@[ -d "$(MODEL_PATH)" ] || { echo "Please set MODEL_PATH"; exit 1; }
 	# minikube v1.32.0-beta.0 or later (docker driver only).
 	minikube start --driver docker --container-runtime docker \
+		--memory=max --cpus=max \
 		--gpus all \
 		--mount \
 		--mount-string $(MODEL_PATH):/minikube-host/models
