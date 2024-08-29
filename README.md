@@ -39,6 +39,23 @@ helm install traefik charts/traefik -n ingress
 kubectl apply -f volumes/minikube.yaml  # for minikube env.
 ```
 
+## ComfyUI Interactive Service (w/ JupyterHub)
+Build ComfyUI (Optional)
+```bash
+eval $(minikube docker-env)
+make docker-build-jupyter
+make docker-push-jupyter
+make docker-run-jupyter  # for testing
+```
+
+```bash
+helm install jupyterhub charts/jupyterhub
+```
+
+- login with `id: admin / pw: admin123!@#`
+
+<img width="1503" src="https://github.com/user-attachments/assets/251e1c6c-6e46-49c6-9b0a-5f6c58b7d8ef">
+
 ## ComfyUI API Service
 This is an on-premise Kubernetes cluster version inspired by [comfyui on EKS](https://github.com/aws-samples/comfyui-on-eks).
 
@@ -71,23 +88,6 @@ Num of images: 1.
 Time spent: 2.17s.
 ------
 ```
-
-## ComfyUI Interactive Service (w/ JupyterHub)
-Build ComfyUI (Optional)
-```bash
-eval $(minikube docker-env)
-make docker-build-jupyter
-make docker-push-jupyter
-make docker-run-jupyter  # for testing
-```
-
-```bash
-helm install jupyterhub charts/jupyterhub
-```
-
-- login with `id: admin / pw: admin123!@#`
-
-<img width="1503" src="https://github.com/user-attachments/assets/251e1c6c-6e46-49c6-9b0a-5f6c58b7d8ef">
 
 ## References
 ### GPU Sharing on K8S
