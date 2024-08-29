@@ -43,6 +43,7 @@ kubectl apply -f volumes/minikube.yaml  # for minikube env.
 Build ComfyUI (Optional)
 ```bash
 eval $(minikube docker-env)
+make docker-build
 make docker-build-jupyter
 make docker-push-jupyter
 make docker-run-jupyter  # for testing
