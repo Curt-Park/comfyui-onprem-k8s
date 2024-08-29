@@ -75,6 +75,7 @@ Time spent: 2.17s.
 ## ComfyUI Interactive Service (w/ JupyterHub)
 Build ComfyUI (Optional)
 ```bash
+eval $(minikube docker-env)
 make docker-build-jupyter
 make docker-push-jupyter
 make docker-run-jupyter  # for testing
@@ -84,7 +85,6 @@ make docker-run-jupyter  # for testing
 helm install jupyterhub charts/jupyterhub
 ```
 
-- `python main.py -s http://host-address/hub/`
 - login with `id: admin / pw: admin123!@#`
 
 <img width="1503" src="https://github.com/user-attachments/assets/251e1c6c-6e46-49c6-9b0a-5f6c58b7d8ef">
