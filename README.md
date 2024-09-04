@@ -21,7 +21,7 @@ This project aims to provide two different types of ComfyUI services on Kubernet
 - [x] [ComfyUI Interactive Service] Evicting inactive users
 
 ## Prerequisites
-- Install [Docker](https://docs.docker.com/engine/install/)
+- Install [Docker](https://docs.docker.com/engine/install/) & [NVIDIA-Container-Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 - Install [Kubectl](https://kubernetes.io/docs/tasks/tools/)
 - Install [Minikube](https://minikube.sigs.k8s.io/docs/start)
 - Install [HELM](https://helm.sh/docs/intro/install/)
