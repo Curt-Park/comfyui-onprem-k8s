@@ -2,17 +2,24 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 2
+replicaCount: 1
 
 image:
-  repository: ghcr.io/curt-park/comfyui-onprem-k8s
-  pullPolicy: IfNotPresent
+  repository: ghcr.io/kmbae/comfyui-onprem-k8s
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "comfyui-82cae45"
+  tag: "Comfyui-v0.3.14-ComfyuiManager-3.23"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+
+persistence:
+  enabled: true
+  annotations: {}
+  accessMode: ReadWriteMany
+  size: 2Gi
+  storageClass: {}
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -50,8 +57,8 @@ service:
     traefik.ingress.kubernetes.io/service.sticky.cookie.maxage: "28800"  # Sticky session sec (8 hours)
 
 ingress:
-  enabled: true
-  className: "traefik"
+  enabled: false
+  className: "nginx"
   annotations:
     traefik.ingress.kubernetes.io/router.middlewares: default-comfyui-stripprefix@kubernetescrd
   hosts:

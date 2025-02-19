@@ -68,7 +68,7 @@ make docker-run  # for testing
 ```
 
 ```bash
-helm install comfyui charts/comfyui
+helm upgrade comfyui charts/comfyui --install -n comfyui-custom -f charts/comfyui/values.yaml --create-namespace
 ```
 
 - Create a connection for testing in minikube: `make tunnel`

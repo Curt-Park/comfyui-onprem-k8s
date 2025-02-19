@@ -1,6 +1,8 @@
 MODEL_PATH ?= $(HOME)/models
-COMFYUI_VERSION ?= 8115d8c
-COMFYUI_MANAGER_VERSION ?= b6bfb66
+#OMFYUI_VERSION ?= 8115d8c
+#COMFYUI_MANAGER_VERSION ?= b6bfb66
+COMFYUI_VERSION ?= v0.3.14
+COMFYUI_MANAGER_VERSION ?= 3.23
 
 
 # Cluster
@@ -21,7 +23,7 @@ cluster-removal:
 
 # Docker - Plain ComfyUI
 docker-build:
-	docker build -t ghcr.io/curt-park/comfyui-onprem-k8s:comfyui-$(COMFYUI_VERSION) \
+	docker build -t ghcr.io/kmbae/comfyui-onprem-k8s:Comfyui-$(COMFYUI_VERSION)-ComfyuiManager-$(COMFYUI_MANAGER_VERSION) \
 		--build-arg COMFYUI_VERSION=$(COMFYUI_VERSION) \
 		--build-arg COMFYUI_MANAGER_VERSION=$(COMFYUI_MANAGER_VERSION) \
 		-f docker/comfyui.Dockerfile .
