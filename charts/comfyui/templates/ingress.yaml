@@ -38,7 +38,10 @@ spec:
   {{- end }}
   rules:
     {{- range .Values.ingress.hosts }}
-    - {{- if .host }}host: {{ .host | quote }}{{- end }}
+    -
+      {{- with .host }}
+      host: {{ . | quote }}
+      {{- end }}
       http:
         paths:
           {{- range .paths }}
